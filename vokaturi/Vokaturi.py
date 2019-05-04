@@ -27,7 +27,7 @@ _library = None
 # def load(path_to_Vokaturi_library):
 def load():
 	global _library
-	path_to_Vokaturi_library= str(Path(__file__).joinpath("OpenVokaturi-3-0-linux64.so").absolute())
+	path_to_Vokaturi_library= str(Path(__file__).parent.joinpath("OpenVokaturi-3-0-linux64.so").absolute())
 	print(path_to_Vokaturi_library)
 
 	_library = ctypes.CDLL(path_to_Vokaturi_library)
