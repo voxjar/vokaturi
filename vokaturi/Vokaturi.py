@@ -6,7 +6,7 @@
 # The declarations are parallel to those in Vokaturi.h.
 
 import ctypes
-from pathlib import Path
+from os.path import dirname, abspath
 
 class Quality(ctypes.Structure):
 	_fields_ = [
@@ -24,12 +24,12 @@ class EmotionProbabilities(ctypes.Structure):
 
 _library = None
 
-# def load(path_to_Vokaturi_library):
+# def load(lib_path):
 def load():
 	global _library
-	path_to_Vokaturi_library = str(Path(__file__).parent.joinpath("OpenVokaturi-3-0-linux64.so").absolute())
+	lib_path = dirname(abspath(__file__)) + "/OpenVokaturi-3-0-linux64.so"
 
-	_library = ctypes.CDLL(path_to_Vokaturi_library)
+	_library = ctypes.CDLL(lib_path)
 
 	_library.VokaturiVoice_create.restype = ctypes.c_void_p
 	_library.VokaturiVoice_create.argtypes = [
