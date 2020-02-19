@@ -15,10 +15,6 @@ setup(
     url='https://source.developers.google.com/p/platoaiinc/r/vokaturi',
     packages=find_packages(),
     package_data={'vokaturi': ['*.so']},
-    # entry_points={
-    # 'console_scripts': ['windcreek=windcreek:main'],
-    # },
-    # install_requires=['voxjar>=0.4.5'],
     license='UNLICENSED',
     keywords='voxjar',
     python_requires='>=2.7',
