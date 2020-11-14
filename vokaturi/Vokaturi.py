@@ -27,11 +27,12 @@ _library = None
 
 def load():
 	global _library
-	print(platform.system())
-	if platform.system()=="Linux":
+	operating_system = platform.system()
+	if operating_system =="Linux":
 		path_to_Vokaturi_library = dirname(abspath(__file__)) + "/OpenVokaturi-3-0-linux64.so"
-	else:
+	elif operating_system == "Darwin":
 		path_to_Vokaturi_library = dirname(abspath(__file__)) + "/OpenVokaturi-3-4-mac64.dylib"
+
 	_library = ctypes.CDLL(path_to_Vokaturi_library)
 
 	_library.VokaturiVoice_create.restype = ctypes.c_void_p
@@ -213,3 +214,5 @@ def SampleArrayCint(size):
 
 def SampleArrayCshort(size):
 	return (ctypes.c_short * size)()
+
+load()
