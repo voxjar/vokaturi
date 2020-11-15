@@ -29,7 +29,7 @@ def load():
 	global _library
 	operating_system = platform.system()
 	if operating_system =="Linux":
-		path_to_Vokaturi_library = dirname(abspath(__file__)) + "/OpenVokaturi-3-0-linux64.so"
+		path_to_Vokaturi_library = dirname(abspath(__file__)) + "/OpenVokaturi-3-4-linux64.so"
 	elif operating_system == "Darwin":
 		path_to_Vokaturi_library = dirname(abspath(__file__)) + "/OpenVokaturi-3-4-mac64.dylib"
 
