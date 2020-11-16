@@ -14,7 +14,7 @@ setup(
     author_email='curtis@voxjar.com',
     url='https://source.developers.google.com/p/platoaiinc/r/vokaturi',
     packages=find_packages(),
-    package_data={'vokaturi': ['*.so']},
+    package_data={'vokaturi': ['*.so', "*.dylib"]},
     license='UNLICENSED',
     keywords='voxjar',
     python_requires='>=2.7',
