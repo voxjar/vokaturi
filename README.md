@@ -1,5 +1,6 @@
 # Vokaturi
 pypi package for the Vokaturi emotion classifier for Linux and Mac
+for more detailed information see (https://developers.vokaturi.com/getting-started/overview)
 
 # Use
 
