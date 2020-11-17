@@ -12,6 +12,8 @@ emotion = Vokaturi.detect(myAudioFile)
 the above requires 
 - [FFmpeg]
 
+[ffmpeg]: https://ffmpeg.org/download.html
+
 optionally you will not need ffmpeg if your audio file is already .wav format.
 in that case 
 
