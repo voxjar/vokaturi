@@ -7,6 +7,7 @@ for more detailed information see (https://developers.vokaturi.com/getting-start
 ```python
 from vokaturi import Vokaturi
 
+myAudioFile = "/tmp/voice.flac"
 emotion = Vokaturi.detect(myAudioFile)
 ```
 the above requires 
@@ -20,5 +21,6 @@ in that case
 ```python
 from vokaturi import Vokaturi
 
+myAudioFile = "/tmp/voice.wav"
 emotion = Vokaturi.detect(myAudioFile, False)
 ```
