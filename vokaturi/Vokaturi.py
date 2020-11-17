@@ -8,6 +8,9 @@
 import ctypes
 from os.path import dirname, abspath
 import platform
+import tempfile
+import subprocess
+import scipy
 
 class Quality(ctypes.Structure):
 	_fields_ = [
@@ -215,4 +218,46 @@ def SampleArrayCint(size):
 def SampleArrayCshort(size):
 	return (ctypes.c_short * size)()
 
-load()
+def detect(src, convert=True):
+	with tempfile.TemporaryDirectory() as tmp_dir:
+		load()
+		if convert:
+			dest = f"{tmp_dir}/vokaturi_audio.wav"
+			args = ["ffmpeg", "-v", "error", "-i", src, dest]
+
+			subprocess.check_output(args)
+		else:
+			dest = src
+
+		(sample_rate, samples) = scipy.io.wavfile.read(dest)
+
+		buffer_length = len(samples)
+		c_buffer = SampleArrayC(buffer_length)
+
+		if samples.ndim == 1:  # mono
+				c_buffer[:] = samples[:] / 32768.0
+		else:  # stereo
+				c_buffer[:] = 0.5 * (samples[:, 0] + 0.0 + samples[:, 1]) / 32768.0
+
+		voice = Voice(sample_rate, buffer_length)
+
+		voice.fill(buffer_length, c_buffer)
+
+		quality = Quality()
+		emotionProbabilities = EmotionProbabilities()
+		voice.extract(quality, emotionProbabilities)
+
+		if quality.valid:
+				emotion = {
+						"emotion-neutral": emotionProbabilities.neutrality,
+						"emotion-happy": emotionProbabilities.happiness,
+						"emotion-sad": emotionProbabilities.sadness,
+						"emotion-angry": emotionProbabilities.anger,
+						"emotion-fear": emotionProbabilities.fear,
+				}
+		else:
+				emotion = None
+		voice.destroy()
+
+		return emotion
+        
