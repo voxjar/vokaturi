@@ -12,7 +12,7 @@ setup(
     long_description=readme,
     author='Curtis Brown',
     author_email='curtis@voxjar.com',
-    url='https://source.developers.google.com/p/platoaiinc/r/vokaturi',
+    url='https://github.com/voxjar/vokaturi',
     packages=find_packages(),
     package_data={'vokaturi': ['*.so', "*.dylib"]},
     license='UNLICENSED',
