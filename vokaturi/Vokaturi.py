@@ -297,19 +297,9 @@ def detect(src, convert=True):
         voice.fill(buffer_length, c_buffer)
 
         quality = Quality()
-        emotionProbabilities = EmotionProbabilities()
-        voice.extract(quality, emotionProbabilities)
+        emotion_probabilities = EmotionProbabilities()
+        voice.extract(quality, emotion_probabilities)
 
-        if quality.valid:
-            emotion = {
-                "emotion-neutral": emotionProbabilities.neutrality,
-                "emotion-happy": emotionProbabilities.happiness,
-                "emotion-sad": emotionProbabilities.sadness,
-                "emotion-angry": emotionProbabilities.anger,
-                "emotion-fear": emotionProbabilities.fear,
-            }
-        else:
-            emotion = None
         voice.destroy()
 
-        return emotion
+        return emotion_probabilities, quality
