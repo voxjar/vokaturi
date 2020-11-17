@@ -10,7 +10,7 @@ from os.path import dirname, abspath
 import platform
 import tempfile
 import subprocess
-import scipy
+from scipy import io
 
 
 class Quality(ctypes.Structure):
@@ -282,7 +282,7 @@ def detect(src, convert=True):
         else:
             dest = src
 
-        (sample_rate, samples) = scipy.io.wavfile.read(dest)
+        (sample_rate, samples) = io.wavfile.read(dest)
 
         buffer_length = len(samples)
         c_buffer = SampleArrayC(buffer_length)
